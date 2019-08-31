@@ -1,5 +1,5 @@
 # tradesniper_poe
- A tool for making fast offers for items listed on [pathofexile.com/trade/](https://www.pathofexile.com/trade/).
+ A tool for making fast offers for items listed on [pathofexile.com/trade/](https://www.pathofexile.com/trade/).  
  Uses the [pathofexile.com/trade/](https://www.pathofexile.com/trade/) api. Use at your own risk, main program should be ToS compliant, not sure about the autowhisper though.
 ## Requirements
 * Python 3.7
