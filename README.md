@@ -12,6 +12,7 @@
 * Run setup.bat to install requirements
 * Alternatively, you can just run pipenv install if you have pipenv installed
 * Run client.py
+* Use [pathofexile.com/trade/](https://www.pathofexile.com/trade/) to get the query. Put in your desired filters and click "search". The last part of the url is the query. Example: pathofexile.com/trade/search/Legion/**n3aG4vT0**
 * [How to get POESESSID by Stickymaddness](https://github.com/Stickymaddness/Procurement/wiki/SessionID)
 ## Things to note
 * The program changes your clipboard every time a listing comes up
