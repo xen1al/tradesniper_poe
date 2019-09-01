@@ -1,7 +1,5 @@
-﻿#NoEnv
-SendMode Input
-SetWorkingDir %A_ScriptDir%
-#SingleInstance force
+﻿#SingleInstance force
+
 if not A_IsAdmin
 	Run *RunAs "%A_AhkPath%" "%A_ScriptFullPath%"
 

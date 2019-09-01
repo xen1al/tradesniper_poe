@@ -1,3 +1,8 @@
 .idea/
 re/
 POESESSID
+*.pyc
+run.bat
+autowhisper.exe
+tradesniper_poe.lnk
+config.json
