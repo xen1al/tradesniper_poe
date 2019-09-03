@@ -5,27 +5,6 @@ import os
 import json
 
 
-def ask_query_save():
-    global queries
-    query_str = input("Enter queries seperated by a comma\n")
-    queries = re.findall(r",?(?:\s?)([A-Za-z0-9]*),?(?:\s?)", query_str)
-    queries.remove("")
-
-    sel = input("Would you like to save this search profile? (Y/N)\n")
-    if sel == "y" or sel == "Y":
-        name = input("Enter a name for this profile\n")
-        if len(config["profiles"]) == 0:
-            id = 0
-        else:
-            id = config["profiles"][-1]["id"] + 1
-        profile = {"id": id, "name": name, "queries": queries}
-        config["profiles"].append(profile)
-
-        config_str = json.dumps(config)
-        with open("config.json", "w") as f:
-            f.write(config_str)
-
-
 def write_config(str):
     with open("config.json", "w") as f:
         f.write(str)
@@ -47,24 +26,39 @@ def setup():
     write_config(config_str)
 
 
-def ask_profile():
-    global queries
-    global ask
+def get_profile(id):
+    global config
 
-    sel = input("Would you like to use a saved profile? (Y/N)\n")
+    for profile in config["profiles"]:
+        if int(profile["id"]) == int(id):
+            return profile
+        else:
+            continue
 
-    if sel == "y" or sel == "Y":
-        for profile in config["profiles"]:
-            print(str(profile["id"] + 1) + ".", profile["name"])
-        sel = input("Select profile\n")
 
-        for profile in config["profiles"]:
-            if str(profile["id"] + 1) == sel:
-                queries = profile["queries"]
-            else:
-                continue
-    elif sel == "n" or sel == "N":
-        ask_query_save()
+def save_profile(name, queries):
+    global config
+
+    if len(config["profiles"]) == 0:
+        id = 0
+    else:
+        id = config["profiles"][-1]["id"] + 1
+    profile = {"id": id, "name": name, "queries": queries}
+    config["profiles"].append(profile)
+
+    config_str = json.dumps(config)
+    with open("config.json", "w") as f:
+        f.write(config_str)
+
+
+def start(queries):
+    global config
+
+    threads = []
+    for query in queries:
+        thread = threading.Thread(target=Websocket, args=(query, config["poesessid"]))
+        threads.append(thread)
+        thread.start()
 
 
 print("Path of Exile trade sniper 1.1")
@@ -76,13 +70,37 @@ else:
     config = json.loads(config)
 
 if len(config["profiles"]) > 0:
-    ask_profile()
+    sel = input("Would you like to use a saved profile? (Y/N)\n")
+
+    if sel == "y" or sel == "Y":
+        for profile in config["profiles"]:
+            print(str(profile["id"] + 1) + ".", profile["name"])
+        sel = input("Select profile\n")
+
+        profile = get_profile(int(sel) - 1)
+        queries = profile["queries"]
+        start(queries)
+    elif sel == "n" or sel == "N":
+        query_str = input("Enter queries seperated by a comma\n")
+        queries = re.findall(r",?(?:\s?)([A-Za-z0-9]*),?(?:\s?)", query_str)
+        queries.remove("")
+
+        sel = input("Would you like to save this search profile? (Y/N)\n")
+        if sel == "y" or sel == "Y":
+            name = input("Enter a name for this profile\n")
+            save_profile(name, queries)
+            start(queries)
+        elif sel == "n" or sel == "N":
+            start(queries)
 else:
-    ask_query_save()
+    query_str = input("Enter queries seperated by a comma\n")
+    queries = re.findall(r",?(?:\s?)([A-Za-z0-9]*),?(?:\s?)", query_str)
+    queries.remove("")
 
-
-threads = []
-for query in queries:
-    thread = threading.Thread(target=Websocket, args=(query, config["poesessid"]))
-    threads.append(thread)
-    thread.start()
+    sel = input("Would you like to save this search profile? (Y/N)\n")
+    if sel == "y" or sel == "Y":
+        name = input("Enter a name for this profile\n")
+        save_profile(name, queries)
+        start(queries)
+    elif sel == "n" or sel == "N":
+        start(queries)
