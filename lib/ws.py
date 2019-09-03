@@ -2,9 +2,9 @@ import websocket
 
 
 class Websocket:
-    def __init__(self, query, cookie):
+    def __init__(self, query, cookie, league):
         self.query = query
-        url = "wss://www.pathofexile.com/api/trade/live/Legion/{}".format(query)
+        url = "wss://www.pathofexile.com/api/trade/live/{}/{}".format(league, query)
         headers = {"Cookie": cookie, "User-Agent": "tradesniper_poe"}
 
         print("INFO: Requesting websocket handhake for {}".format(query))

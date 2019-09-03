@@ -64,14 +64,14 @@ def get_profile(id):
             continue
 
 
-def save_profile(name, queries):
+def save_profile(name, league, queries):
     global config
 
     if len(config["profiles"]) == 0:
         id = 0
     else:
         id = config["profiles"][-1]["id"] + 1
-    profile = {"id": id, "name": name, "queries": queries}
+    profile = {"id": id, "name": name, "queries": queries, "league": league}
     config["profiles"].append(profile)
 
     config_str = json.dumps(config)
@@ -79,17 +79,17 @@ def save_profile(name, queries):
         f.write(config_str)
 
 
-def start(queries):
+def start(queries, league):
     global config
 
     threads = []
     for query in queries:
-        thread = threading.Thread(target=ws, args=(query, config["poesessid"]))
+        thread = threading.Thread(target=ws, args=(query, config["poesessid"], league))
         threads.append(thread)
         thread.start()
 
 
-print("Path of Exile trade sniper 1.1")
+print("Path of Exile trade sniper 1.1.1")
 
 if os.path.isfile("config.json") is False:
     setup()
@@ -107,28 +107,33 @@ if len(config["profiles"]) > 0:
 
         profile = get_profile(int(sel) - 1)
         queries = profile["queries"]
-        start(queries)
+        league = profile["league"]
+        start(queries, league)
     elif sel == "n" or sel == "N":
         query_str = input("Enter queries seperated by a comma\n")
         queries = re.findall(r",?(?:\s?)([A-Za-z0-9]*),?(?:\s?)", query_str)
         queries.remove("")
 
+        league = input("Enter league\n")
+
         sel = input("Would you like to save this search profile? (Y/N)\n")
         if sel == "y" or sel == "Y":
             name = input("Enter a name for this profile\n")
-            save_profile(name, queries)
-            start(queries)
+            save_profile(name, league, queries)
+            start(queries, league)
         elif sel == "n" or sel == "N":
-            start(queries)
+            start(queries, league)
 else:
     query_str = input("Enter queries seperated by a comma\n")
     queries = re.findall(r",?(?:\s?)([A-Za-z0-9]*),?(?:\s?)", query_str)
     queries.remove("")
 
+    league = input("Enter league\n")
+
     sel = input("Would you like to save this search profile? (Y/N)\n")
     if sel == "y" or sel == "Y":
         name = input("Enter a name for this profile\n")
-        save_profile(name, queries)
-        start(queries)
+        save_profile(name, league, queries)
+        start(queries, league)
     elif sel == "n" or sel == "N":
-        start(queries)
+        start(queries, league)
