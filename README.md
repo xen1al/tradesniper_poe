@@ -1,19 +1,17 @@
 # tradesniper_poe
  A tool for making fast offers for items listed on [pathofexile.com/trade/](https://www.pathofexile.com/trade/).  
- Uses the [pathofexile.com/trade/](https://www.pathofexile.com/trade/) api. Use at your own risk, main program should be ToS compliant, not sure about the autowhisper though.
-## Requirements
-* Python 3.7
-* AutoHotkey (for autowhisper)
-* Pynput
-* Pyperclip
-* Requests
-* Websocket-client
-## Usage
+ Uses the [pathofexile.com/trade/](https://www.pathofexile.com/trade/) api. Main program is ToS compliant, not sure about the autowhisper though. Use at your own risk.
+## Setup
+### From source
 * Run setup.bat to install requirements
 * Alternatively, you can just run pipenv install if you have pipenv installed
-* Run client.py
-* Use [pathofexile.com/trade/](https://www.pathofexile.com/trade/) to get the query. Put in your desired filters and click "search". The last part of the url is the query. Example: pathofexile.com/trade/search/Legion/**n3aG4vT0**
-* [How to get POESESSID by Stickymaddness](https://github.com/Stickymaddness/Procurement/wiki/SessionID)
+* Run client.py and enter your POESESSID ([How to get POESESSID by Stickymaddness](https://github.com/Stickymaddness/Procurement/wiki/SessionID))
+### From release
+* Download the [latest release](https://github.com/xen1al/tradesniper_poe/releases/latest)
+* Run the .exe file and enter your POESESSID ([How to get POESESSID by Stickymaddness](https://github.com/Stickymaddness/Procurement/wiki/SessionID))
+## Usage
+* Use [pathofexile.com/trade/](https://www.pathofexile.com/trade/) to get the query. Put in your desired filters and click "search". The last part of the url is the query. Example: http://www.pathofexile.com/trade/search/Standard/<b>9JPQ8OTK</b>
+* For automatic whispering, just run autowhisper.ahk alongside the client. [Download autohotkey here](https://www.autohotkey.com)
 ## Things to note
 * The program changes your clipboard every time a listing comes up
 * The autowhisper will focus on your game and send keystrokes, might have unwanted side-effects if the game is not running
