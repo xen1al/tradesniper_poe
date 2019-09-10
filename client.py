@@ -8,6 +8,8 @@ from pynput import keyboard
 from lib.listing import Listing
 import winsound
 
+client_version = "1.1.2"
+
 
 class WS(Websocket):
     def message_handler(self, messages):
@@ -91,7 +93,7 @@ def start(queries, league):
         thread.start()
 
 
-print("Path of Exile trade sniper 1.1.1")
+print("Tradesniper_POE {}".format(client_version))
 
 if os.path.isfile("config.json") is False:
     setup()
