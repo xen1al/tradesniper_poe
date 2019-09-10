@@ -10,7 +10,8 @@
 * Download the [latest release](https://github.com/xen1al/tradesniper_poe/releases/latest)
 * Run the .exe file and enter your POESESSID ([How to get POESESSID by Stickymaddness](https://github.com/Stickymaddness/Procurement/wiki/SessionID))
 ## Usage
-* Use [pathofexile.com/trade/](https://www.pathofexile.com/trade/) to get the query. Put in your desired filters and click "search". The last part of the url is the query. Example: http://www.pathofexile.com/trade/search/Standard/**9JPQ8OTK**
+* Use [pathofexile.com/trade/](https://www.pathofexile.com/trade/) to get the query. Put in your desired filters and click "search". The last part of the url is the query. Example: http://www.pathofexile.com/trade/search/Standard/<b>9JPQ8OTK</b>
+* For automatic whispering, just run autowhisper.ahk alongside the client. [Download autohotkey here](https://www.autohotkey.com)
 ## Things to note
 * The program changes your clipboard every time a listing comes up
 * The autowhisper will focus on your game and send keystrokes, might have unwanted side-effects if the game is not running
