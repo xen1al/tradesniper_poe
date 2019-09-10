@@ -6,6 +6,7 @@ import json
 import pyperclip
 from pynput import keyboard
 from lib.listing import Listing
+import winsound
 
 
 class WS(Websocket):
@@ -28,6 +29,7 @@ class WS(Websocket):
 
         print("INFO:", listing.ign + ":", str(socket_count) + "S" + str(link_count) + "L", listing.itemName,
               listing.itemTypeLine, "for", listing.price, listing.currency, "in", listing.league)
+        winsound.PlaySound("C:/Windows/Media/notify.wav", winsound.SND_ASYNC)
         pyperclip.copy(listing.whisper)
         keyboard.Controller().press(keyboard.Key.f2)
         keyboard.Controller().release(keyboard.Key.f2)

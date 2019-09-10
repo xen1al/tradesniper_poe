@@ -7,5 +7,4 @@ F2::
 WinActivate, ahk_class POEWindowClass
 WinWaitActive, ahk_class POEWindowClass
 SendInput, {Enter}^v{Enter}
-SoundBeep, 250, 200
 return
