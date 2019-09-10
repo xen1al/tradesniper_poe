@@ -8,7 +8,8 @@
 * Run client.py and enter your POESESSID ([How to get POESESSID by Stickymaddness](https://github.com/Stickymaddness/Procurement/wiki/SessionID))
 ### From release
 * Download the [latest release](https://github.com/xen1al/tradesniper_poe/releases/latest)
-* Run the .exe file and enter your POESESSID ([How to get POESESSID by Stickymaddness](https://github.com/Stickymaddness/Procurement/wiki/SessionID))
+* Run the .exe file and enter your POESESSID ([How to get POESESSID by Stickymaddness](https://github.com/Stickymaddness/Procurement/wiki/SessionID)). 
+Note: the POESESSID should be in the following format: POESESSID=**poesessid**
 ## Usage
 * Use [pathofexile.com/trade/](https://www.pathofexile.com/trade/) to get the query. Put in your desired filters and click "search". The last part of the url is the query. Example: http://www.pathofexile.com/trade/search/Standard/<b>9JPQ8OTK</b>
 * For automatic whispering, just run autowhisper.ahk alongside the client. [Download autohotkey here](https://www.autohotkey.com)
