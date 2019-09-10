@@ -8,8 +8,8 @@ from pynput import keyboard
 from lib.listing import Listing
 
 
-class ws(Websocket):
-    def on_message(self, messages):
+class WS(Websocket):
+    def message_handler(self, messages):
         socket_count = ""
         link_count = ""
         messages = json.loads(messages)
@@ -26,7 +26,7 @@ class ws(Websocket):
                 freq_group = max(set(socket_groups), key=socket_groups.count)
                 link_count = socket_count - (socket_count - socket_groups.count(freq_group))
 
-        print(listing.ign + ":", str(socket_count) + "S" + str(link_count) + "L", listing.itemName,
+        print("INFO:", listing.ign + ":", str(socket_count) + "S" + str(link_count) + "L", listing.itemName,
               listing.itemTypeLine, "for", listing.price, listing.currency, "in", listing.league)
         pyperclip.copy(listing.whisper)
         keyboard.Controller().press(keyboard.Key.f2)
@@ -84,7 +84,7 @@ def start(queries, league):
 
     threads = []
     for query in queries:
-        thread = threading.Thread(target=ws, args=(query, config["poesessid"], league))
+        thread = threading.Thread(target=WS, args=(query, config["poesessid"], league))
         threads.append(thread)
         thread.start()
 
