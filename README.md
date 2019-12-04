@@ -1,6 +1,6 @@
 # tradesniper_poe
  A tool for making fast offers for items listed on [pathofexile.com/trade/](https://www.pathofexile.com/trade/).  
- Uses the [pathofexile.com/trade/](https://www.pathofexile.com/trade/) api. Main program is ToS compliant, not sure about the autowhisper though. Use at your own risk.
+ Uses the [pathofexile.com/trade/](https://www.pathofexile.com/trade/) api. Main program is ToS compliant, not sure about the autowhisper though. Use at your own risk. Very rarely updated, might want to look for alternatives.
 ## Setup
 ### From source
 * Run setup.bat to install requirements
